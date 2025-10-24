@@ -1,0 +1,2 @@
+# grey_and_optimization4deteriorating_inventory
+易变质产品库存的灰色预测建模与优化决策 
