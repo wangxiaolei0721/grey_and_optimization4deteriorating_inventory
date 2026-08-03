@@ -1,26 +1,20 @@
-function [Demand_pre,RMSE] = demand_fit(demand_pars,Price,Demand)
+function [demand_pre,MAPE] = demand_fit(demand_pars,Price,Demand)
+% demand fit
 
+price_vector = vertcat(Price{:});
+demand_vector = vertcat(Demand{:});
+demand_pre_vector = polyval(demand_pars,price_vector);
 
 cell_length=length(Price);
-Demand_pre={};
-demand_vector=[];
-demand_pre_vector=[];
-
+demand_pre = cell(1,cell_length);
 for i = 1:cell_length
     price=Price{i};
-    demand_vector=[demand_vector;Demand{i}];
     % estimate parameter
-    demand_pre=polyval(demand_pars,price);
-    Demand_pre{i}=demand_pre;
-    demand_pre_vector=[demand_pre_vector;demand_pre];
+    demand_pre{1,i}=polyval(demand_pars,price);
 end
 
-SSE = sum((demand_pre_vector - demand_vector).^2);
+APE = 100*abs(demand_pre_vector - demand_vector)./demand_vector;
+MAPE = mean(APE);
 
-% 计算均方误差 (MSE)
-MSE = SSE/length(demand_vector);
-
-% 计算均方根误差 (RMSE)
-RMSE = sqrt(MSE);
 
 end

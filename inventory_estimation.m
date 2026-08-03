@@ -1,11 +1,11 @@
-function theta = inventory_estimation(Demand_train,Q_train,It_train)
+function lambda = inventory_estimation(Demand_train,Q_train,It_train)
 % parameter estimation
 % input parameter:
 % time_train: the sample time
 % level_diff_train: inventory level changes
 % level_train: inventory level
 % output parameter:
-% pars: [theta,alpha,beta]
+% pars: [lambda,alpha,beta]
 
 
 cell_length=length(Q_train);
@@ -27,7 +27,7 @@ for i = 1:cell_length
     Y=[Y;y];
 end
 
-theta=(B'*B)\B'*Y;
+lambda=(B'*B)\B'*Y;
 
 end
 
