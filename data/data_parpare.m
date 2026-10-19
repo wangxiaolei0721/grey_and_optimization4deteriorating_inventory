@@ -25,13 +25,13 @@ fitresult= polyfit(SalePrice,SaleQty,1);
 Sale_pre=polyval(fitresult,SalePrice);
 % 拟合优度
 R2 = 1 - sum((SaleQty-Sale_pre).^2)/sum((SaleQty-mean(SaleQty)).^2);
-plot(SalePrice,SaleQty,'MarkerEdgeColor',[0 0 0],'MarkerSize',12,'Marker','x',...
+plot(SalePrice,SaleQty,'MarkerEdgeColor',[0 0 0],'MarkerSize',10,'Marker','o',...
     'LineStyle','none','LineWidth',2);
 hold on
-plot(SalePrice,Sale_pre,'LineWidth',2,'Color',[0 0.45 0.74]);
+plot(SalePrice,Sale_pre,'LineWidth',2,'Color','k'); % [0 0.45 0.74]
 xlabel({'销售价格'},'FontSize',14);
-ylabel(['销售数量'],'FontSize',14);
-set(gca,'FontName','Microsoft YaHei','FontSize',16);
+ylabel(['需求量'],'FontSize',14);
+set(gca,'FontName','Microsoft YaHei','FontSize',20);
 % Create textbox
 annotation(demand_fig,'textbox',...
     [0.650710968620224 0.358620535714284 0.183766529472838 0.0635000000000002],...
@@ -78,14 +78,14 @@ end
 %
 inventory_fig=figure('unit','centimeters','position',[5,5,40,20],'PaperPosition',[5,5,40,20],'PaperSize',[40,20]);
 for i = 1:20
-    plot(Date_time_t0{i},Level_t0{i},'Marker','o','LineWidth',1.5,'MarkerSize',8);
+    plot(Date_time_t0{i},Level_t0{i},'Marker','o','LineWidth',1.5,'MarkerSize',8,'Color','black');
     hold on
-    xline(Date_t0{i},'LineStyle','--','LineWidth',0.5,'Color','black');
+    xline(Date_t0{i},'LineStyle','--','LineWidth',1,'Color','black');
 end
 xlabel({'时间/日'},'FontSize',14);
 ylabel(['库存水平'],'FontSize',14);
 xlim([Date_t0{1} Date_t0{i+1}]);
-set(gca,'FontName','Microsoft YaHei','FontSize',16);
+set(gca,'FontName','Microsoft YaHei','FontSize',20);
 % save figure
 savefig(demand_fig,'..\figure\case_demand.fig');
 exportgraphics(demand_fig,'..\figure\case_demand.pdf')

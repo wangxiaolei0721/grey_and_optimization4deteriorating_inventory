@@ -57,22 +57,22 @@ beta=-demand_pars(1);
 fdemand=figure('unit','centimeters','position',[0,5,40,20],'PaperPosition',[0,5,40,20],'PaperSize',[40,20]);
 hold on;
 for i=1:length(Q_train)
-    h1 = plot(Date_train{i},Demand_train{i},'LineStyle','none','Marker','o','MarkerSize',8,'LineWidth',1.5,'Color',[0 0.45 0.74]);
-    h2 = plot(Date_train{i},Demand_fit{i},'LineStyle','none','LineWidth',1.5,'Marker','^','MarkerSize',8,'Color',[0.47 0.67 0.19]);
-    xline(Date_train{i}(1),'LineStyle','--','LineWidth',0.5,'Color','black');
+    h1 = plot(Date_train{i},Demand_train{i},'LineStyle','none','Marker','o','MarkerSize',8,'LineWidth',1.5,'Color','k'); % [0 0.45 0.74]
+    h2 = plot(Date_train{i},Demand_fit{i},'LineStyle','none','LineWidth',1.5,'Marker','^','MarkerSize',8,'Color','k'); % [0.47 0.67 0.19]
+    xline(Date_train{i}(1),'LineStyle','--','LineWidth',1,'Color','black');
 end
 for i=1:length(Q_test)
-    h3 = plot(Date_test{i},Demand_test{i},'LineStyle','none','Marker','o','MarkerSize',8,'LineWidth',1.5,'Color',[0 0.45 0.74]);
-    h4 = plot(Date_test{i},Demand_pre{i},'LineStyle','none','LineWidth',1.5,'Marker','s','MarkerSize',8,'Color',[0.85 0.33 0.1]);
-    xline(Date_test{i}(1),'LineStyle','--','LineWidth',0.5,'Color','black');
+    h3 = plot(Date_test{i},Demand_test{i},'LineStyle','none','Marker','o','MarkerSize',8,'LineWidth',1.5,'Color','k'); % [0 0.45 0.74]
+    h4 = plot(Date_test{i},Demand_pre{i},'LineStyle','none','LineWidth',1.5,'Marker','s','MarkerSize',8,'Color','k'); % [0.85 0.33 0.1]
+    xline(Date_test{i}(1),'LineStyle','--','LineWidth',1,'Color','black');
 end
 box on;
 xlabel({'时间/日'},'FontSize',14);
-ylabel(['库存水平'],'FontSize',14);
+ylabel(['需求量'],'FontSize',14);
 xline(Date_test{1}(1),'LineStyle','-','LineWidth',1,'Color','black');
 % 添加图例
 legend([h1,h2,h4],["真实需求","拟合需求","预测需求"],'Location','north');
-set(gca,'FontName','Microsoft YaHei','FontSize',16);
+set(gca,'FontName','Microsoft YaHei','FontSize',20);
 % Create doublearrow
 annotation(fdemand,'doublearrow',[0.145 0.655],...
     [0.88 0.88]);
@@ -106,14 +106,14 @@ MAPE = mean(abs(It_Q_pre_vector - It_Q_vector)./It_Q_vector);
 finvertory=figure('unit','centimeters','position',[0,5,40,20],'PaperPosition',[0,5,40,20],'PaperSize',[40,20]);
 hold on;
 for i=1:length(Q_train)
-    h1 = plot(Date_t0_train{i},It_Q_train{i},'LineStyle','none','Marker','o','MarkerSize',8,'LineWidth',1.5,'Color',[0 0.45 0.74]);
-    h2 = plot(Date_t0_train{i},It_Q_fit{i},'LineStyle','--','LineWidth',1.5,'Marker','^','MarkerSize',8,'Color',[0.47 0.67 0.19]);
-    xline(Date_t0_train{i}(1),'LineStyle','--','LineWidth',0.5,'Color','black');
+    h1 = plot(Date_t0_train{i},It_Q_train{i},'LineStyle','none','Marker','o','MarkerSize',8,'LineWidth',1.5,'Color','k'); % [0 0.45 0.74]
+    h2 = plot(Date_t0_train{i},It_Q_fit{i},'LineStyle','-','LineWidth',1.5,'Marker','^','MarkerSize',8,'Color','k'); % [0.47 0.67 0.19]
+    xline(Date_t0_train{i}(1),'LineStyle','--','LineWidth',1,'Color','black');
 end
 for i=1:length(Q_test)
-    h3 = plot(Date_t0_test{i},It_Q_test{i},'LineStyle','none','Marker','o','MarkerSize',8,'LineWidth',1.5,'Color',[0 0.45 0.74]);
-    h4 = plot(Date_t0_test{i},It_Q_pre{i},'LineStyle','--','LineWidth',1.5,'Marker','^','Color',[0.85 0.33 0.1]);
-    xline(Date_t0_test{i}(1),'LineStyle','--','LineWidth',0.5,'Color','black');
+    h3 = plot(Date_t0_test{i},It_Q_test{i},'LineStyle','none','Marker','o','MarkerSize',8,'LineWidth',1.5,'Color','k'); % [0 0.45 0.74]
+    h4 = plot(Date_t0_test{i},It_Q_pre{i},'LineStyle','-','LineWidth',1.5,'Marker','s','MarkerSize',8,'Color','k'); % [0.85 0.33 0.1]
+    xline(Date_t0_test{i}(1),'LineStyle','--','LineWidth',1,'Color','black');
 end
 box on;
 xlabel({'时间/日'},'FontSize',14);
@@ -121,7 +121,7 @@ ylabel(['库存水平'],'FontSize',14);
 xline(Date_test{1}(1),'LineStyle','-','LineWidth',1,'Color','black');
 % 添加图例
 legend([h1,h2,h4],["真实库存水平","拟合库存水平","预测库存水平"],'Location','north');
-set(gca,'FontName','Microsoft YaHei','FontSize',16);
+set(gca,'FontName','Microsoft YaHei','FontSize',20);
 % Create doublearrow
 annotation(finvertory,'doublearrow',[0.145 0.67],...
     [0.88 0.88]);
